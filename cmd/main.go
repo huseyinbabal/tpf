@@ -40,7 +40,10 @@ var (
 )
 
 func main() {
-	rootCmd.Execute()
+	err := rootCmd.Execute()
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func init() {
@@ -66,7 +69,7 @@ func initConfig() {
 	viper.AutomaticEnv()
 	filterConfig := make(map[string]any)
 	if err := viper.ReadInConfig(); err == nil {
-		for key, _ := range viper.AllSettings() {
+		for key := range viper.AllSettings() {
 			value := viper.GetStringMap(key)
 			for k, v := range value {
 				filterConfig[k] = v
@@ -74,7 +77,10 @@ func initConfig() {
 		}
 	} else {
 		log.Println(err)
-		rootCmd.Usage()
+		err := rootCmd.Usage()
+		if err != nil {
+			log.Println("failed to print usage")
+		}
 		os.Exit(1)
 	}
 }

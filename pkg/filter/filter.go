@@ -62,7 +62,7 @@ func getPlan(planLines string, filters []Filter, isHideEot bool, isDiffMode bool
 		if !isResourceMatch {
 			// Look for the first line of the resource to filter
 			for _, filter := range filters {
-				if match := filter.regexpResource.MatchString(line); match == true {
+				if filter.regexpResource.MatchString(line) {
 					regexpObject = filter.regexpObject
 					isResourceMatch = true
 				}
