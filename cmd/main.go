@@ -73,7 +73,9 @@ func initConfig() {
 			}
 		}
 	} else {
-		log.Fatalln(err)
+		log.Println(err)
+		rootCmd.Usage()
+		os.Exit(1)
 	}
 }
 
