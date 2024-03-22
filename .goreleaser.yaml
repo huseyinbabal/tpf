@@ -1,0 +1,10 @@
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    ldflags:
+      - -s -w
+    binary: tpf
+    main: ./cmd/main.go
